@@ -420,7 +420,7 @@ const ImpactBox = ({ value, label, subtext, isDark, delay }) => {
   return (
     <div
       ref={ref}
-      className={`p-8 border flex flex-col justify-between h-full group transition-all duration-700 hover:-translate-y-2
+      className={`p-6 md:p-8 border flex flex-col justify-between h-full group transition-all duration-700 hover:-translate-y-2
         ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
         ${isDark ? 'border-neutral-800 bg-neutral-900/30 hover:bg-neutral-900' : 'border-neutral-200 bg-white hover:bg-neutral-50'}
       `}
@@ -448,7 +448,7 @@ const StickyProjectCard = ({ study, isDark, onClick }) => {
 
       {/* Sticky Number/ID */}
       <div className="md:col-span-2 md:sticky md:top-32 h-fit">
-        <h3 className={`text-5xl md:text-6xl font-black tracking-tighter opacity-10 mb-2 transition-colors group-hover:opacity-30 ${isDark ? 'text-white' : 'text-black'}`}>
+        <h3 className={`text-4xl md:text-6xl font-black tracking-tighter opacity-10 mb-2 transition-colors group-hover:opacity-30 ${isDark ? 'text-white' : 'text-black'}`}>
           {study.id}
         </h3>
         {study.isFlagship && (
@@ -519,12 +519,12 @@ const CaseStudyModal = ({ study, isDark, onClose }) => {
           <X size={24} />
         </button>
 
-        <div className="p-8 md:p-12 clear-both">
+        <div className="p-6 md:p-12 clear-both">
           {/* Header */}
           <span className={`inline-block px-3 py-1 mb-4 rounded-full text-xs font-bold uppercase tracking-wider ${isDark ? 'bg-neutral-800 text-emerald-400' : 'bg-emerald-100 text-emerald-800'}`}>
             {study.role}
           </span>
-          <h2 className="text-3xl md:text-4xl font-black mb-6 leading-tight">{study.title}</h2>
+          <h2 className="text-2xl md:text-4xl font-black mb-6 leading-tight">{study.title}</h2>
 
           <div className="flex flex-wrap gap-2 mb-8">
             {study.tags.map((tag, i) => (
@@ -771,13 +771,13 @@ export default function Portfolio() {
                   Hi, I'm Ann
                 </div>
 
-                <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6
+                <h1 className={`text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6
                   ${isDark ? 'text-white' : 'text-black'}
                 `}>
                   <span className={`text-transparent bg-clip-text bg-gradient-to-r ${isDark ? 'from-emerald-400 to-cyan-400' : 'from-emerald-600 to-cyan-600'}`}>
                     Senior Product Manager
                   </span> <br />
-                  <span className={`font-light text-3xl md:text-4xl ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>
+                  <span className={`font-light text-2xl md:text-4xl ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>
                     (FinTech, Payments & Digital Assets)
                   </span>
                 </h1>
@@ -1030,7 +1030,7 @@ export default function Portfolio() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
 
-               {/* Certifications & Training Column */}
+            {/* Certifications & Training Column */}
             <div>
               <div className="flex items-center gap-3 mb-8">
                 <Award className={isDark ? 'text-emerald-400' : 'text-emerald-600'} size={32} />
@@ -1091,7 +1091,6 @@ export default function Portfolio() {
               </div>
             </div>
 
-         
           </div>
         </div>
       </section>
