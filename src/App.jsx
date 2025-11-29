@@ -16,12 +16,9 @@ import {
   GraduationCap,
   Award,
   TrendingUp,
-  Building2,
   Menu,
   X,
-  Code2,
   Database,
-  Layout,
   ArrowDown,
   Target,
   CreditCard,
@@ -29,16 +26,8 @@ import {
   Network,
   ChevronRight,
   Sparkles,
-  Activity,
-  MousePointer2,
-  Terminal,
-  Cpu,
-  Hash,
-  CornerRightDown,
-  Maximize2,
-  Star,
   LayoutGrid,
-  ArrowRight,
+  Star,
   BookOpen
 } from 'lucide-react';
 
@@ -440,8 +429,8 @@ const StickyProjectCard = ({ study, isDark, onClick }) => {
   const [ref, inView] = useScrollObserver(0.2);
 
   return (
-    <div 
-      ref={ref} 
+    <div
+      ref={ref}
       onClick={() => onClick(study)}
       className={`grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-16 md:mb-24 cursor-pointer group transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
     >
@@ -452,9 +441,9 @@ const StickyProjectCard = ({ study, isDark, onClick }) => {
           {study.id}
         </h3>
         {study.isFlagship && (
-             <div className={`mb-4 inline-block px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest border ${isDark ? 'border-emerald-500 text-emerald-400' : 'border-emerald-600 text-emerald-700'}`}>
-                  Flagship
-             </div>
+          <div className={`mb-4 inline-block px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest border ${isDark ? 'border-emerald-500 text-emerald-400' : 'border-emerald-600 text-emerald-700'}`}>
+            Flagship
+          </div>
         )}
         <div className={`hidden md:block w-px h-24 ml-4 mt-4 transition-colors ${isDark ? 'bg-neutral-800 group-hover:bg-emerald-500' : 'bg-neutral-200 group-hover:bg-emerald-500'}`}></div>
       </div>
@@ -471,10 +460,10 @@ const StickyProjectCard = ({ study, isDark, onClick }) => {
               {study.role}
             </span>
             <span className={`p-2 rounded-full border transition-colors ${isDark ? 'border-neutral-700 bg-neutral-800 text-white group-hover:bg-emerald-500' : 'border-neutral-200 bg-white text-black group-hover:bg-emerald-600 group-hover:text-white'}`}>
-               <ArrowUpRight size={20} />
+              <ArrowUpRight size={20} />
             </span>
           </div>
-          
+
           <h4 className={`text-2xl md:text-3xl font-bold mb-3 ${isDark ? 'text-white' : 'text-black'}`}>{study.title}</h4>
 
           <div className="flex flex-wrap gap-2 mt-4">
@@ -508,12 +497,12 @@ const CaseStudyModal = ({ study, isDark, onClose }) => {
   if (!study) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onClick={onClose}></div>
       <div className={`relative w-full max-w-4xl max-h-full overflow-y-auto rounded-3xl shadow-2xl animate-fade-in-up scroll-hidden
         ${isDark ? 'bg-neutral-900 border border-neutral-800 text-white' : 'bg-white text-black'}
       `}
-      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         <button onClick={onClose} className="sticky top-4 right-4 float-right z-10 p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
           <X size={24} />
@@ -536,7 +525,7 @@ const CaseStudyModal = ({ study, isDark, onClose }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             <div className="md:col-span-2 space-y-8">
-               {/* Problem */}
+              {/* Problem */}
               <div>
                 <h5 className="text-sm font-bold uppercase tracking-widest mb-3 flex items-center gap-2 text-emerald-500">
                   <Shield size={16} /> Challenge
@@ -546,7 +535,7 @@ const CaseStudyModal = ({ study, isDark, onClose }) => {
                 </p>
               </div>
 
-               {/* Approach */}
+              {/* Approach */}
               <div>
                 <h5 className="text-sm font-bold uppercase tracking-widest mb-3 flex items-center gap-2 text-emerald-500">
                   <Target size={16} /> Approach
@@ -563,7 +552,7 @@ const CaseStudyModal = ({ study, isDark, onClose }) => {
             </div>
 
             <div className="space-y-8">
-               {/* Outcome Box */}
+              {/* Outcome Box */}
               <div className={`p-6 rounded-2xl ${isDark ? 'bg-neutral-800/50' : 'bg-emerald-50'}`}>
                 <h5 className={`text-sm font-bold uppercase tracking-widest mb-4 flex items-center gap-2 ${isDark ? 'text-emerald-400' : 'text-emerald-700'}`}>
                   <TrendingUp size={16} /> Impact
@@ -616,6 +605,15 @@ const EducationItem = ({ title, school, year, status, isDark }) => (
   </div>
 );
 
+// Navigation Configuration
+const NAV_ITEMS = [
+  { id: 'home', label: 'Home', icon: Sparkles },
+  { id: 'skills', label: 'Skills', icon: Zap },
+  { id: 'expertise', label: 'Expertise', icon: Shield },
+  { id: 'impact', label: 'Impact', icon: TrendingUp },
+  { id: 'work', label: 'Work', icon: Briefcase },
+  { id: 'education', label: 'Education', icon: GraduationCap },
+];
 
 /**
  * --- MAIN APP ---
@@ -624,7 +622,7 @@ export default function Portfolio() {
   const [isDark, setIsDark] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+
   // State for Modal
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -660,7 +658,7 @@ export default function Portfolio() {
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setActiveSection(id);
-    setMobileMenuOpen(false);
+    setMobileMenuOpen(false); // Close mobile menu after click
   };
 
   // --- SORTING LOGIC ---
@@ -671,34 +669,44 @@ export default function Portfolio() {
   const flagshipProjects = sortedStudies.filter(s => s.isFlagship);
   const otherProjects = sortedStudies.filter(s => !s.isFlagship);
 
+  // Prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [mobileMenuOpen]);
+
+
   return (
     <div className={`min-h-screen font-sans transition-colors duration-500 selection:bg-emerald-500 selection:text-white ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}>
-      
+
       {/* --- MODAL --- */}
       {selectedProject && (
-        <CaseStudyModal 
-          study={selectedProject} 
-          isDark={isDark} 
-          onClose={() => setSelectedProject(null)} 
+        <CaseStudyModal
+          study={selectedProject}
+          isDark={isDark}
+          onClose={() => setSelectedProject(null)}
         />
       )}
 
-      {/* --- FLOATING NAVIGATION (Desktop) --- */}
+      {/* --- DESKTOP NAVIGATION (Floating Pill - Hidden on Mobile) --- */}
       <div className={`hidden md:flex fixed bottom-8 left-1/2 -translate-x-1/2 z-40 items-center gap-1 px-2 py-2 rounded-full border shadow-2xl backdrop-blur-xl transition-all duration-700 ease-out transform
         ${loaded ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-95'}
         ${isDark ? 'bg-neutral-900/90 border-neutral-800' : 'bg-white/90 border-neutral-200'}`}>
 
-        {['home', 'skills', 'expertise', 'impact', 'work', 'education'].map((item) => (
+        {NAV_ITEMS.map((item) => (
           <button
-            key={item}
-            onClick={() => scrollTo(item)}
+            key={item.id}
+            onClick={() => scrollTo(item.id)}
             className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95
-              ${activeSection === item
+              ${activeSection === item.id
                 ? (isDark ? 'bg-white text-black shadow-lg shadow-white/10' : 'bg-black text-white shadow-lg shadow-black/20')
                 : (isDark ? 'text-neutral-400 hover:text-white hover:bg-white/10' : 'text-neutral-500 hover:text-black hover:bg-black/5')}
             `}
           >
-            {item}
+            {item.label}
           </button>
         ))}
 
@@ -722,47 +730,90 @@ export default function Portfolio() {
         </a>
       </div>
 
-      {/* --- MOBILE HEADER & NAV --- */}
-      <div className={`md:hidden fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center border-b backdrop-blur-md
-        ${isDark ? 'bg-black/80 border-neutral-800' : 'bg-white/80 border-neutral-200'}`}>
-        <span className="font-bold tracking-tight">ANN.F</span>
-        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <X /> : <Menu />}
-        </button>
-      </div>
+      {/* --- MOBILE NAVIGATION - THE "APP LAUNCHER" BOTTOM SHEET --- */}
 
-      {mobileMenuOpen && (
-        <div className={`fixed inset-0 z-40 pt-24 px-6 flex flex-col gap-6 md:hidden ${isDark ? 'bg-black' : 'bg-white'}`}>
-          {['home', 'skills', 'expertise', 'impact', 'work', 'education'].map((item) => (
+      {/* 1. The Trigger Button (Visible only on Mobile) */}
+      <button
+        onClick={() => setMobileMenuOpen(true)}
+        className={`md:hidden fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-90
+          ${isDark ? 'bg-neutral-800 text-white shadow-white/5 border border-neutral-700' : 'bg-white text-black shadow-black/10 border border-neutral-100'}
+          ${mobileMenuOpen ? 'scale-0 opacity-0 pointer-events-none' : 'scale-100 opacity-100'}
+        `}
+      >
+        <Menu size={24} strokeWidth={2.5} />
+      </button>
+
+      {/* 2. The Bottom Sheet Overlay & Container */}
+      <div className={`md:hidden fixed inset-0 z-[60] transition-all duration-500
+        ${mobileMenuOpen ? 'bg-black/60 backdrop-blur-sm visible' : 'bg-black/0 invisible pointer-events-none'}
+      `} onClick={() => setMobileMenuOpen(false)}>
+
+        {/* 3. The Sheet Content (Slides up) */}
+        <div
+          onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the sheet
+          className={`absolute bottom-0 left-0 right-0 rounded-t-[32px] p-6 pb-10 transition-transform duration-500 cubic-bezier(0.32, 0.72, 0, 1)
+            ${mobileMenuOpen ? 'translate-y-0' : 'translate-y-full'}
+            ${isDark ? 'bg-neutral-900 border-t border-neutral-800' : 'bg-white border-t border-neutral-100 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]'}
+        `}>
+
+          {/* Sheet Header (Close + Actions) */}
+          <div className="flex items-center justify-between mb-8">
             <button
-              key={item}
-              onClick={() => scrollTo(item)}
-              className={`text-3xl font-black uppercase tracking-tighter text-left ${isDark ? 'text-white' : 'text-black'}`}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`p-2 rounded-full transition-colors ${isDark ? 'bg-neutral-800 text-neutral-400' : 'bg-neutral-100 text-neutral-600'}`}
             >
-              {item}
+              <X size={24} />
             </button>
-          ))}
-          <div className="flex gap-4 mt-8">
-            <button onClick={() => setIsDark(!isDark)} className={`p-4 rounded-full border ${isDark ? 'border-neutral-800' : 'border-neutral-200'}`}>
-              {isDark ? <Sun /> : <Moon />}
-            </button>
-            <a href="Ann_Fowosere_Senior_Product_Manager_FinTech_Payments_Compliance_2025.pdf" download className="flex-1 flex items-center justify-center gap-2 bg-emerald-600 text-white font-bold rounded-full">
-              <Download size={20} /> Download CV
-            </a>
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => setIsDark(!isDark)}
+                className={`p-3 rounded-full border transition-colors ${isDark ? 'border-neutral-700 bg-neutral-800 text-yellow-400' : 'border-neutral-200 bg-neutral-50 text-neutral-600'}`}
+              >
+                {isDark ? <Sun size={20} fill="currentColor" /> : <Moon size={20} />}
+              </button>
+              <a
+                href="Ann_Fowosere_Senior_Product_Manager_FinTech_Payments_Compliance_2025.pdf"
+                download
+                className={`p-3 rounded-full border transition-colors ${isDark ? 'border-neutral-700 bg-neutral-800 text-emerald-400' : 'border-neutral-200 bg-neutral-50 text-emerald-600'}`}
+              >
+                <Download size={20} />
+              </a>
+            </div>
+          </div>
+
+          {/* Sheet Grid (The "App Launcher" look) */}
+          <div className="grid grid-cols-2 gap-4">
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className={`flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border transition-all duration-200 active:scale-95
+                  ${activeSection === item.id
+                    ? (isDark ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-400' : 'bg-emerald-50 border-emerald-200 text-emerald-700')
+                    : (isDark ? 'bg-neutral-800/50 border-neutral-800 text-neutral-300' : 'bg-neutral-50 border-neutral-100 text-neutral-600')
+                  }
+                `}
+              >
+                <item.icon size={32} strokeWidth={1.5} />
+                <span className="text-sm font-bold uppercase tracking-wider">{item.label}</span>
+              </button>
+            ))}
           </div>
         </div>
-      )}
+      </div>
+
 
       {/* --- HERO SECTION --- */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* CHANGE: Added 'pt-[10px]' to the className below */}
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-[25px]">
         {/* Background */}
         <div className={`absolute inset-0 transition-colors duration-1000 ${isDark ? 'bg-neutral-950' : 'bg-white'}`}></div>
-
         <div className="container mx-auto px-6 lg:px-12 relative z-10 w-full max-w-[1400px]">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24">
 
-            {/* LEFT: CONTENT */}
-            <div className="flex-1 text-left">
+            {/* LEFT: CONTENT (Now 2nd on Mobile) */}
+            <div className="flex-1 text-left order-2 lg:order-1">
               <div className={`transition-all duration-1000 delay-100 transform ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
 
                 <div className={`text-xl lg:text-3xl font-serif italic mb-4
@@ -829,11 +880,11 @@ export default function Portfolio() {
               </div>
             </div>
 
-            {/* RIGHT: IMAGE */}
-            <div className={`flex-shrink-0 relative transition-all duration-1000 delay-300 transform ${loaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+            {/* RIGHT: IMAGE (Now 1st on Mobile) */}
+            <div className={`flex-shrink-0 relative transition-all duration-1000 delay-300 transform order-1 lg:order-2 mb-8 lg:mb-0 ${loaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
               <div className="relative w-72 h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl">
                 <img
-                  src={profileImage} 
+                  src={profileImage}
                   alt="Ann Fowosere"
                   className="w-full h-full object-cover"
                 />
@@ -846,7 +897,7 @@ export default function Portfolio() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce
+        <div className={`absolute bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce
            ${isDark ? 'text-neutral-600' : 'text-neutral-400'}
         `}>
           <ArrowDown size={16} />
@@ -888,35 +939,35 @@ export default function Portfolio() {
 
           <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border transition-colors ${isDark ? 'bg-neutral-800 border-neutral-800' : 'bg-neutral-200 border-neutral-200'}`}>
             {[
-              { 
-                icon: Globe, 
-                title: "Payments & Banking", 
-                desc: "Open Banking (PIS/AIS), VRP, BNPL, virtual IBANs, CASS 7 safeguarding, reconciliation frameworks, treasury operations, SEPA Instant, SWIFT GPI, FX and cross-border flows, ISO 20022 alignment. (Relevant Bodies: FCA, EBA, ECB/SEPA Council, SWIFT, Bank of England, HMRC)." 
+              {
+                icon: Globe,
+                title: "Payments & Banking",
+                desc: "Open Banking (PIS/AIS), VRP, BNPL, virtual IBANs, CASS 7 safeguarding, reconciliation frameworks, treasury operations, SEPA Instant, SWIFT GPI, FX and cross-border flows, ISO 20022 alignment. (Relevant Bodies: FCA, EBA, ECB/SEPA Council, SWIFT, Bank of England, HMRC)."
               },
-              { 
-                icon: Shield, 
-                title: "FinCrime & RegTech", 
-                desc: "AML/KYC (CDD/EDD), sanctions screening, transaction monitoring, SAR processes, risk tiering frameworks, fraud detection (AI-driven), model governance, audit trails. (Relevant Bodies: FATF, FinCEN, FCA, OFAC, HM Treasury, EBA)." 
+              {
+                icon: Shield,
+                title: "FinCrime & RegTech",
+                desc: "AML/KYC (CDD/EDD), sanctions screening, transaction monitoring, SAR processes, risk tiering frameworks, fraud detection (AI-driven), model governance, audit trails. (Relevant Bodies: FATF, FinCEN, FCA, OFAC, HM Treasury, EBA)."
               },
-              { 
-                icon: Layers, 
-                title: "Crypto & Web3", 
-                desc: "Stablecoins (MiCA-ready), crypto on/off-ramp flows, blockchain payment journeys, chain analytics alignment, VASP compliance, risk controls for crypto-fiat settlement. (Relevant Bodies: ESMA, FCA, EU Commission, FATF Travel Rule)." 
+              {
+                icon: Layers,
+                title: "Crypto & Web3",
+                desc: "Stablecoins (MiCA-ready), crypto on/off-ramp flows, blockchain payment journeys, chain analytics alignment, VASP compliance, risk controls for crypto-fiat settlement. (Relevant Bodies: ESMA, FCA, EU Commission, FATF Travel Rule)."
               },
-              { 
-                icon: Briefcase, 
-                title: "Leadership & Delivery", 
-                desc: "Product strategy & roadmap, OKRs, Agile/Scrum/SAFe delivery, stakeholder management, vendor selection, cross-functional execution, change leadership, regulatory alignment across engineering, compliance, and operations teams." 
+              {
+                icon: Briefcase,
+                title: "Leadership & Delivery",
+                desc: "Product strategy & roadmap, OKRs, Agile/Scrum/SAFe delivery, stakeholder management, vendor selection, cross-functional execution, change leadership, regulatory alignment across engineering, compliance, and operations teams."
               },
-              { 
-                icon: Zap, 
-                title: "Data & Platforms", 
-                desc: "SQL, product analytics, BI dashboards (Power BI, Tableau), event-driven data concepts, predictive analytics, risk modelling exposure, data-driven decision-making frameworks." 
+              {
+                icon: Zap,
+                title: "Data & Platforms",
+                desc: "SQL, product analytics, BI dashboards (Power BI, Tableau), event-driven data concepts, predictive analytics, risk modelling exposure, data-driven decision-making frameworks."
               },
-              { 
-                icon: CheckCircle2, 
-                title: "Governance & Standards", 
-                desc: "PSD2, MiCA, ISO 20022, GDPR, ISO 27001, AMLD5/6, CASS 7, SOX, IFRS 17, ITIL fundamentals. (Relevant Bodies: FCA, ICO, ISO Standards Committees, EBA, ESMA, NIST)." 
+              {
+                icon: CheckCircle2,
+                title: "Governance & Standards",
+                desc: "PSD2, MiCA, ISO 20022, GDPR, ISO 27001, AMLD5/6, CASS 7, SOX, IFRS 17, ITIL fundamentals. (Relevant Bodies: FCA, ICO, ISO Standards Committees, EBA, ESMA, NIST)."
               }
             ].map((item, i) => (
               <div key={i} className={`p-8 md:p-12 flex flex-col items-start gap-6 group transition-colors duration-300 ${isDark ? 'bg-black hover:bg-neutral-900' : 'bg-white hover:bg-neutral-100'}`}>
@@ -939,33 +990,33 @@ export default function Portfolio() {
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <ImpactBox 
-              value="45%" 
-              label="Latency Reduction" 
-              subtext="Optimised cross-border payment processing latency through SEPA Instant & SWIFT GPI workflow redesign." 
-              isDark={isDark} 
-              delay={0} 
+            <ImpactBox
+              value="45%"
+              label="Latency Reduction"
+              subtext="Optimised cross-border payment processing latency through SEPA Instant & SWIFT GPI workflow redesign."
+              isDark={isDark}
+              delay={0}
             />
-            <ImpactBox 
-              value="35%" 
-              label="Fraud Reduced" 
-              subtext="Delivered AI-driven transaction monitoring and AML rule optimisation to strengthen fraud-risk controls." 
-              isDark={isDark} 
-              delay={100} 
+            <ImpactBox
+              value="35%"
+              label="Fraud Reduced"
+              subtext="Delivered AI-driven transaction monitoring and AML rule optimisation to strengthen fraud-risk controls."
+              isDark={isDark}
+              delay={100}
             />
-            <ImpactBox 
-              value="50%" 
-              label="Audit Readiness" 
-              subtext="Implemented automated evidence generation and compliance mapping, accelerating FCA/EBA audit preparation." 
-              isDark={isDark} 
-              delay={200} 
+            <ImpactBox
+              value="50%"
+              label="Audit Readiness"
+              subtext="Implemented automated evidence generation and compliance mapping, accelerating FCA/EBA audit preparation."
+              isDark={isDark}
+              delay={200}
             />
-            <ImpactBox 
-              value="96%" 
-              label="Delivery Rate" 
-              subtext="Maintained a consistent 96% sprint delivery rate across cross-functional squads by tightening ceremonies." 
-              isDark={isDark} 
-              delay={300} 
+            <ImpactBox
+              value="96%"
+              label="Delivery Rate"
+              subtext="Maintained a consistent 96% sprint delivery rate across cross-functional squads by tightening ceremonies."
+              isDark={isDark}
+              delay={300}
             />
           </div>
         </div>
@@ -974,29 +1025,29 @@ export default function Portfolio() {
       {/* --- WORK (SEPARATED FLAGSHIPS) --- */}
       <section id="work" className={`py-20 md:py-32 px-6 md:px-24 transition-colors ${isDark ? 'bg-neutral-950' : 'bg-neutral-50'}`}>
         <div className="max-w-5xl mx-auto">
-          
+
           <div className="mb-16 md:mb-24 text-center md:text-left">
             <h2 className={`text-4xl md:text-7xl font-black tracking-tighter mb-4 ${isDark ? 'text-white' : 'text-black'}`}>PROJECT<br />PORTFOLIO</h2>
             <div className={`h-2 w-24 mx-auto md:mx-0 ${isDark ? 'bg-emerald-500' : 'bg-emerald-600'}`}></div>
             <p className={`mt-6 max-w-2xl ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
               Deep dive into 10 key projects demonstrating end-to-end delivery in regulated environments.
-              <br/>
+              <br />
               <span className="text-emerald-500 font-bold">Click any project to view full case study.</span>
             </p>
           </div>
 
           {/* 1. Flagship Projects */}
           <div className="mb-20">
-             <div className={`mb-8 flex items-center gap-3 pb-4 border-b ${isDark ? 'border-neutral-800' : 'border-neutral-200'}`}>
-                 <Star className="text-emerald-500" fill="currentColor" size={24} />
-                 <h3 className={`text-2xl font-black uppercase tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>Flagship Case Studies</h3>
-             </div>
-             
-             <div className="space-y-4">
+            <div className={`mb-8 flex items-center gap-3 pb-4 border-b ${isDark ? 'border-neutral-800' : 'border-neutral-200'}`}>
+              <Star className="text-emerald-500" fill="currentColor" size={24} />
+              <h3 className={`text-2xl font-black uppercase tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>Flagship Case Studies</h3>
+            </div>
+
+            <div className="space-y-4">
               {flagshipProjects.map((study) => (
-                <StickyProjectCard 
-                  key={study.id} 
-                  study={study} 
+                <StickyProjectCard
+                  key={study.id}
+                  study={study}
                   isDark={isDark}
                   onClick={setSelectedProject}
                 />
@@ -1007,14 +1058,14 @@ export default function Portfolio() {
           {/* 2. Other Projects */}
           <div>
             <div className={`mb-8 flex items-center gap-3 pb-4 border-b ${isDark ? 'border-neutral-800' : 'border-neutral-200'}`}>
-                 <LayoutGrid className={isDark ? 'text-neutral-400' : 'text-neutral-600'} size={24} />
-                 <h3 className={`text-2xl font-black uppercase tracking-tight ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>Selected Works</h3>
-             </div>
+              <LayoutGrid className={isDark ? 'text-neutral-400' : 'text-neutral-600'} size={24} />
+              <h3 className={`text-2xl font-black uppercase tracking-tight ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>Selected Works</h3>
+            </div>
             <div className="space-y-4">
               {otherProjects.map((study) => (
-                <StickyProjectCard 
-                  key={study.id} 
-                  study={study} 
+                <StickyProjectCard
+                  key={study.id}
+                  study={study}
                   isDark={isDark}
                   onClick={setSelectedProject}
                 />
@@ -1036,7 +1087,7 @@ export default function Portfolio() {
                 <Award className={isDark ? 'text-emerald-400' : 'text-emerald-600'} size={32} />
                 <h3 className={`text-3xl font-black ${isDark ? 'text-white' : 'text-black'}`}>CERTIFICATIONS</h3>
               </div>
-              
+
               {/* UPDATED: Certifications List */}
               <div className="flex flex-col gap-4 mb-10">
                 {[
@@ -1052,13 +1103,13 @@ export default function Portfolio() {
                 ))}
               </div>
 
-               {/* UPDATED: Professional Training Subsection */}
+              {/* UPDATED: Professional Training Subsection */}
               <div className="flex items-center gap-3 mb-6">
                 <BookOpen className={isDark ? 'text-emerald-400' : 'text-emerald-600'} size={24} />
                 <h3 className={`text-xl font-bold uppercase tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>Professional Training</h3>
               </div>
               <div className="flex flex-col gap-4">
-                 {[
+                {[
                   "Advanced Business Analysis Training – IIBA-aligned",
                   "AML Training Program – ACAMS pathway (In Progress)",
                   "Data Privacy Training (CIPP/E track) – IAPP (Ongoing)",
@@ -1080,13 +1131,13 @@ export default function Portfolio() {
                 <h3 className={`text-3xl font-black ${isDark ? 'text-white' : 'text-black'}`}>EDUCATION</h3>
               </div>
               <div className="flex flex-col gap-6">
-                 {/* UPDATED: MBA Details */}
-                <EducationItem 
-                  title="MBA" 
-                  school="Olabisi Onabanjo University" 
-                  year="2018" 
-                  status="Business Strategy, Technology & Operations, Financial Management" 
-                  isDark={isDark} 
+                {/* UPDATED: MBA Details */}
+                <EducationItem
+                  title="MBA"
+                  school="Olabisi Onabanjo University"
+                  year="2018"
+                  status="Business Strategy, Technology & Operations, Financial Management"
+                  isDark={isDark}
                 />
               </div>
             </div>
@@ -1102,7 +1153,7 @@ export default function Portfolio() {
             Strategic Engagements & Collaborations
           </p>
           <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-             {/* UPDATED: Partners List */}
+            {/* UPDATED: Partners List */}
             {['Adyen', 'PayPal', 'ComplyAdvantage', 'ClearBank', 'Modulr', 'Currencycloud', 'Thredd', 'Santander', 'JP Morgan', '10x Banking', 'NatWest', 'Aon', 'BMW Financial Services'].map((partner, i) => (
               <span key={i} className={`text-xl md:text-2xl font-black uppercase tracking-tight cursor-default hover:scale-110 transition-transform ${isDark ? 'text-neutral-500 hover:text-white' : 'text-neutral-400 hover:text-black'}`}>
                 {partner}
@@ -1116,16 +1167,16 @@ export default function Portfolio() {
       <section id="contact" className={`py-32 px-6 md:px-24 flex flex-col items-center justify-center text-center transition-colors ${isDark ? 'bg-neutral-900' : 'bg-neutral-100'}`}>
         <div className="max-w-3xl">
           <p className={`text-sm font-bold uppercase tracking-widest mb-6 ${isDark ? 'text-emerald-500' : 'text-emerald-700'}`}>
-             {/* UPDATED: Contact Header */}
+            {/* UPDATED: Contact Header */}
             Let's Connect
           </p>
           <h2 className={`text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-none ${isDark ? 'text-white' : 'text-black'}`}>
             LET'S SCALE<br />COMPLIANTLY.
           </h2>
-          
-           {/* UPDATED: Availability Text */}
+
+          {/* UPDATED: Availability Text */}
           <p className={`text-lg md:text-xl font-medium mb-12 max-w-2xl mx-auto ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
-             Available for <span className={`${isDark ? 'text-white' : 'text-black'} font-bold`}>Product Manager & Senior Product Manager</span> roles across FinTech, Payments, RegTech, and Digital Assets.
+            Available for <span className={`${isDark ? 'text-white' : 'text-black'} font-bold`}>Product Manager & Senior Product Manager</span> roles across FinTech, Payments, RegTech, and Digital Assets.
           </p>
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
@@ -1135,9 +1186,9 @@ export default function Portfolio() {
             <a href="tel:+447557906586" className={`flex items-center gap-3 text-lg font-bold hover:underline ${isDark ? 'text-white' : 'text-black'}`}>
               <Phone className="w-5 h-5" /> +44 7557 906586
             </a>
-            <a 
-              href="https://www.linkedin.com/in/annpeju-fowosere/" 
-              target="_blank" 
+            <a
+              href="https://www.linkedin.com/in/annpeju-fowosere/"
+              target="_blank"
               rel="noopener noreferrer"
               className={`flex items-center gap-3 text-lg font-bold hover:underline ${isDark ? 'text-white' : 'text-black'}`}
             >
@@ -1148,6 +1199,7 @@ export default function Portfolio() {
       </section>
 
       {/* --- FOOTER --- */}
+      {/* Added bottom padding to prevent nav overlap */}
       <footer className={`py-16 px-6 border-t relative z-10 transition-colors ${isDark ? 'bg-gradient-to-b from-neutral-900 to-black border-neutral-900 text-neutral-500' : 'bg-gradient-to-b from-neutral-50 to-white border-neutral-200 text-neutral-400'} pb-40 md:pb-48`}>
         <div className="container mx-auto flex flex-col items-center justify-center text-center gap-4">
           <div className="flex flex-col items-center gap-1">
@@ -1205,6 +1257,11 @@ export default function Portfolio() {
         }
         .animate-fade-in-up {
           animation: fade-in-up 0.3s ease-out forwards;
+        }
+
+        /* Custom Cubic Bezier for smoother sheet animation */
+        .cubic-bezier {
+            transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
         }
       `}</style>
     </div>
