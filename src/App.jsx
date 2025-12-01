@@ -28,7 +28,9 @@ import {
   Sparkles,
   LayoutGrid,
   Star,
-  BookOpen
+  BookOpen,
+  MessageSquare,
+  FileText
 } from 'lucide-react';
 
 // --- ASSETS ---
@@ -719,14 +721,15 @@ export default function Portfolio() {
           {isDark ? <Sun size={18} /> : <Moon size={18} />}
         </button>
 
+        {/* UPDATED: Desktop Nav Request CV - No target blank */}
         <a
-          href="Ann_Fowosere_Senior_Product_Manager_FinTech_Payments_Compliance_2025.pdf"
-          download
+          href="mailto:a.fowosere485@gmail.com?subject=Request%20for%20CV%20-%20Portfolio"
+          title="Request CV"
           className={`p-2.5 ml-1 rounded-full text-white transition-all duration-300 hover:scale-110 hover:shadow-lg active:scale-90 active:shadow-sm
             ${isDark ? 'bg-emerald-500 hover:bg-emerald-400 shadow-emerald-500/20' : 'bg-[#00a67e] hover:bg-[#008c6a] shadow-emerald-600/20'}
           `}
         >
-          <Download size={18} strokeWidth={2.5} />
+          <Mail size={18} strokeWidth={2.5} />
         </a>
       </div>
 
@@ -772,12 +775,13 @@ export default function Portfolio() {
               >
                 {isDark ? <Sun size={20} fill="currentColor" /> : <Moon size={20} />}
               </button>
+              
+              {/* UPDATED: Mobile Nav Request CV - No target blank */}
               <a
-                href="Ann_Fowosere_Senior_Product_Manager_FinTech_Payments_Compliance_2025.pdf"
-                download
+                href="mailto:a.fowosere485@gmail.com?subject=Request%20for%20CV%20-%20Portfolio"
                 className={`p-3 rounded-full border transition-colors ${isDark ? 'border-neutral-700 bg-neutral-800 text-emerald-400' : 'border-neutral-200 bg-neutral-50 text-emerald-600'}`}
               >
-                <Download size={20} />
+                <Mail size={20} />
               </a>
             </div>
           </div>
@@ -865,18 +869,28 @@ export default function Portfolio() {
                   ))}
                 </div>
 
-                <div className="flex flex-wrap gap-6 items-center">
-                  <a href="#contact" className={`px-6 py-3 rounded-full text-sm font-bold transition-all shadow-lg hover:shadow-emerald-500/20 hover:-translate-y-0.5
+                {/* UPDATED: HERO BUTTONS WITH FIX - No target blank */}
+                <div className="flex flex-wrap gap-4 items-center">
+                  {/* Option 1: Request CV */}
+                  <a href="mailto:a.fowosere485@gmail.com?subject=Request%20for%20CV%20-%20Portfolio" 
+                    className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all shadow-lg hover:shadow-emerald-500/20 hover:-translate-y-0.5
                     ${isDark ? 'bg-emerald-500 text-white hover:bg-emerald-400' : 'bg-emerald-600 text-white hover:bg-emerald-700'}
                   `}>
-                    Get in Touch
+                    <FileText size={18} /> Request CV
                   </a>
-                  <a href="Ann_Fowosere_Senior_Product_Manager_FinTech_Payments_Compliance_2025.pdf" download className={`flex items-center gap-2 text-sm font-medium hover:text-emerald-500 transition-colors
-                    ${isDark ? 'text-neutral-400' : 'text-neutral-500'}
+
+                  {/* Option 2: Book a Chat */}
+                  <a href="mailto:a.fowosere485@gmail.com?subject=Book%20a%20Chat%20-%20Portfolio" 
+                    className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold border transition-all hover:-translate-y-0.5
+                    ${isDark 
+                      ? 'border-neutral-700 hover:border-white text-white hover:bg-neutral-800' 
+                      : 'border-neutral-300 hover:border-black text-black hover:bg-neutral-50'
+                    }
                   `}>
-                    <Download size={16} /> Download CV
+                    <MessageSquare size={18} /> Book a Chat
                   </a>
                 </div>
+
               </div>
             </div>
 
